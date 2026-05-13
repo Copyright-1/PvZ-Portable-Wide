@@ -27,13 +27,13 @@
 #define NUM_ALMANAC_SEEDS 49
 #define NUM_ALMANAC_ZOMBIES 26
 
-constexpr const float			ALMANAC_PLANT_POSITION_X		= 578.0f;
+constexpr const float			ALMANAC_PLANT_POSITION_X		= 711.0f;
 constexpr const float			ALMANAC_PLANT_POSITION_Y		= 140.0f;
-constexpr const float			ALMANAC_ZOMBIE_POSITION_X		= 559.0f;
+constexpr const float			ALMANAC_ZOMBIE_POSITION_X		= 692.0f;
 constexpr const float			ALMANAC_ZOMBIE_POSITION_Y		= 175.0f;
-constexpr const int				ALMANAC_INDEXPLANT_POSITION_X	= 167;
+constexpr const int				ALMANAC_INDEXPLANT_POSITION_X	= 200;
 constexpr const int				ALMANAC_INDEXPLANT_POSITION_Y	= 255;
-constexpr const float			ALMANAC_INDEXZOMBIE_POSITION_X	= 535.0f;
+constexpr const float			ALMANAC_INDEXZOMBIE_POSITION_X	= 668.0f;
 constexpr const float			ALMANAC_INDEXZOMBIE_POSITION_Y	= 215.0f;
 
 class Plant;
