@@ -194,19 +194,19 @@ Board::Board(LawnApp* theApp)
 	if (mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ZEN_GARDEN || mApp->mGameMode == GameMode::GAMEMODE_TREE_OF_WISDOM)
 	{
 		mMenuButton->SetLabel("[MAIN_MENU_BUTTON]");
-		mMenuButton->Resize(628, -10, 163, 46);
+		mMenuButton->Resize(628 + 266, -10, 163, 46);
 
 		mStoreButton = new GameButton(1);
 		mStoreButton->mButtonImage = IMAGE_ZENSHOPBUTTON;
 		mStoreButton->mOverImage = IMAGE_ZENSHOPBUTTON_HIGHLIGHT;
 		mStoreButton->mDownImage = IMAGE_ZENSHOPBUTTON_HIGHLIGHT;
 		mStoreButton->mParentWidget = this;
-		mStoreButton->Resize(678, 33, IMAGE_ZENSHOPBUTTON->mWidth, 40);
+		mStoreButton->Resize(678 + 266, 33, IMAGE_ZENSHOPBUTTON->mWidth, 40);
 	}
 	else
 	{
 		mMenuButton->SetLabel("[MENU_BUTTON]");
-		mMenuButton->Resize(681, -10, 117, 46);
+		mMenuButton->Resize(681 + 266, -10, 117, 46);
 	}
 
 	if (mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_LAST_STAND)
@@ -220,7 +220,7 @@ Board::Board(LawnApp* theApp)
 	if (mApp->mGameMode == GameMode::GAMEMODE_UPSELL)
 	{
 		mMenuButton->SetLabel("[MAIN_MENU_BUTTON]");
-		mMenuButton->Resize(628, -10, 163, 46);
+		mMenuButton->Resize(628 + 266, -10, 163, 46);
 
 		mStoreButton = new GameButton(1);
 		mStoreButton->mDrawStoneButton = true;
@@ -3415,7 +3415,7 @@ void Board::UpdateToolTip()
 	{
 		mToolTip->SetLabel("[NEXT_GARDEN_TOOLTIP]");
 		Rect aButtonRect = GetShovelButtonRect();
-		mToolTip->mX = 599;
+		mToolTip->mX = 599 + 266;
 		mToolTip->mY = aButtonRect.mY + 52;
 		mToolTip->mCenter = true;
 		mToolTip->mVisible = true;
@@ -4321,7 +4321,7 @@ bool Board::MouseHitTest(int x, int y, HitResult* theHitResult)
 				Rect aButtonRect = GetShovelButtonRect();
 				if (aTool == GameObjectType::OBJECT_TYPE_NEXT_GARDEN)
 				{
-					aButtonRect.mX = 564;
+					aButtonRect.mX = 564 + 266;
 				}
 				else
 				{
@@ -6659,18 +6659,18 @@ void Board::DrawProgressMeter(Graphics* g)
 	// ====================================================================================================
 	// ▲ 绘制进度条进度部分的贴图
 	// ====================================================================================================
-	g->DrawImageCel(Sexy::IMAGE_FLAGMETER, 600, 575, 0);
+	g->DrawImageCel(Sexy::IMAGE_FLAGMETER, 600 + 266, 575, 0);
 	int aCelWidth = Sexy::IMAGE_FLAGMETER->GetCelWidth();
 	int aCelHeight = Sexy::IMAGE_FLAGMETER->GetCelHeight();
 	int aClipWidth = TodAnimateCurve(0, PROGRESS_METER_COUNTER, mProgressMeterWidth, 0, 143, TodCurves::CURVE_LINEAR);
 	Rect aSrcRect(aCelWidth - aClipWidth - 7, aCelHeight, aClipWidth, aCelHeight);
-	Rect aDstRect(aCelWidth - aClipWidth + 593, 575, aClipWidth, aCelHeight);
+	Rect aDstRect(aCelWidth - aClipWidth + 593 + 266, 575, aClipWidth, aCelHeight);
 	g->DrawImage(Sexy::IMAGE_FLAGMETER, aDstRect, aSrcRect);
 	
 	// ====================================================================================================
 	// ▲ 根据不同关卡，绘制进度条上的文字或旗帜
 	// ====================================================================================================
-	int aPosX = aCelWidth / 2 + 600;
+	int aPosX = aCelWidth / 2 + 600  + 266;
 	Color aColor(224, 187, 98);
 	// @Patoke: updated these
 	if (mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_BEGHOULED || mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_BEGHOULED_TWIST)
@@ -6704,7 +6704,7 @@ void Board::DrawProgressMeter(Graphics* g)
 	{
 		int aNumWavesPerFlag = GetNumWavesPerFlag();
 		int aNumFlagWaves = mNumWaves / aNumWavesPerFlag;
-		int aFlagsPosEnd = 590 + aCelWidth;  // 旗帜区域的右界横坐标
+		int aFlagsPosEnd = 590 + aCelWidth + 266;  // 旗帜区域的右界横坐标
 		for (int aFlagWave = 1; aFlagWave <= aNumFlagWaves; aFlagWave++)
 		{
 			// 取得旗帜升起时的高度偏移
@@ -6719,7 +6719,7 @@ void Board::DrawProgressMeter(Graphics* g)
 				aHeight = TodAnimateCurve(100, 0, mFlagRaiseCounter, 0, 14, TodCurves::CURVE_LINEAR);
 			}
 			// 计算旗帜的横坐标
-			int aPosX = TodAnimateCurve(0, mNumWaves, aTotalWavesAtFlag, aFlagsPosEnd, 606, TodCurves::CURVE_LINEAR);
+			int aPosX = TodAnimateCurve(0, mNumWaves, aTotalWavesAtFlag, aFlagsPosEnd, 606 + 266, TodCurves::CURVE_LINEAR);
 			// 绘制旗杆
 			g->DrawImageCel(Sexy::IMAGE_FLAGMETERPARTS, aPosX, 571, 1, 0);
 			// 绘制旗帜
@@ -6731,7 +6731,7 @@ void Board::DrawProgressMeter(Graphics* g)
 	// ▲ 绘制进度条的额外部分
 	// ====================================================================================================
 	// 绘制“关卡进程”的小牌子
-	g->DrawImage(Sexy::IMAGE_FLAGMETERLEVELPROGRESS, 638, 589);
+	g->DrawImage(Sexy::IMAGE_FLAGMETERLEVELPROGRESS, 638 + 266, 589);
 	// 判断是否需要绘制进度条当前位置处的小僵尸头，不需要则直接返回
 	if (mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_BEGHOULED || 
 		mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_BEGHOULED_TWIST ||
@@ -6743,7 +6743,7 @@ void Board::DrawProgressMeter(Graphics* g)
 		return;
 	// 绘制僵尸头
 	int aHeadProgress = TodAnimateCurve(0, 150, mProgressMeterWidth, 0, 135, CURVE_LINEAR);
-	g->DrawImageCel(Sexy::IMAGE_FLAGMETERPARTS, aCelWidth - aHeadProgress + 580, 572, 0, 0);
+	g->DrawImageCel(Sexy::IMAGE_FLAGMETERPARTS, aCelWidth - aHeadProgress + 580 + 266, 572, 0, 0);
 }
 
 void Board::DrawHouseDoorBottom(Graphics* g)
@@ -6814,11 +6814,11 @@ void Board::DrawLevel(Graphics* g)
 	// ====================================================================================================
 	// ▲ 正式开始绘制关卡名称字符串
 	// ====================================================================================================
-	int aPosX = 780;
+	int aPosX = 780 + 266;
 	int aPosY = 595;
 	if (HasProgressMeter())
 	{
-		aPosX = 593;
+		aPosX = 593 + 266;
 	}
 	if (mChallenge->mChallengeState == ChallengeState::STATECHALLENGE_ZEN_FADING)
 	{
@@ -6878,7 +6878,7 @@ void Board::DrawZenButtons(Graphics* g)
 		Rect aButtonRect = GetShovelButtonRect();
 		if (aTool == GameObjectType::OBJECT_TYPE_NEXT_GARDEN)
 		{
-			aButtonRect.mX = 564;
+			aButtonRect.mX = 564 + 266;
 			if (!mMenuButton->mBtnNoDraw)
 			{
 				g->DrawImage(Sexy::IMAGE_ZEN_NEXTGARDEN, aButtonRect.mX + 2, aButtonRect.mY + aOffsetY);
@@ -7302,12 +7302,12 @@ void Board::DrawTopRightUI(Graphics* g)
 		if (mChallenge->mChallengeState == STATECHALLENGE_ZEN_FADING)
 		{
 			mMenuButton->mY = TodAnimateCurve(50, 0, mChallenge->mChallengeStateCounter, -10, -50, TodCurves::CURVE_EASE_IN_OUT);
-			mStoreButton->mX = TodAnimateCurve(50, 0, mChallenge->mChallengeStateCounter, 678, 800, TodCurves::CURVE_EASE_IN_OUT);
+			mStoreButton->mX = TodAnimateCurve(50, 0, mChallenge->mChallengeStateCounter, 678 + 266, 800, TodCurves::CURVE_EASE_IN_OUT);
 		}
 		else
 		{
 			mMenuButton->mY = -10;
-			mStoreButton->mX = 678;
+			mStoreButton->mX = 678 + 266;
 		}
 	}
 
