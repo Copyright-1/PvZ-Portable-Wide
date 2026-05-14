@@ -318,14 +318,14 @@ void AlmanacDialog::DrawPlants(Graphics* g)
 		bool aNight = mSelectedSeed == SeedType::SEED_SEASHROOM;
 		g->DrawImage(aNight ? Sexy::IMAGE_ALMANAC_GROUNDNIGHTPOOL : Sexy::IMAGE_ALMANAC_GROUNDPOOL, 654, 107);
 
-		if (mApp->Is3DAccelerated())
+		/*if (mApp->Is3DAccelerated())
 		{
 			g->SetClipRect(608, 0, 397, 500);
 			g->mTransY -= 145;
 			mApp->mPoolEffect->PoolEffectDraw(g, aNight);
 			g->mTransY += 145;
 			g->ClearClipRect();
-		}
+		}*/
 	}
 	else
 	{
