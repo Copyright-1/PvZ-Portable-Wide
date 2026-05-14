@@ -162,15 +162,9 @@ ChallengeScreen::ChallengeScreen(LawnApp* theApp, ChallengePage thePage)
 		aChallengeButton->mDoFinger = true;
 		aChallengeButton->mFrameNoDraw = true;
 		if (!aChlDef.mPage == CHALLENGE_PAGE_SURVIVAL)
-			aChallengeButton->Resize(37 + (aChlDef.mCol * 2) * 148, 93 + aChlDef.mRow * 119, 104, 115);
-		else {
-			if (aChlDef.mChallengeMode == GAMEMODE_SURVIVAL_ENDLESS_STAGE_3) {
-				aChlDef.mCol = 3;
-				aChallengeButton->Resize(37 + aChlDef.mCol * 148, 125 + aChlDef.mRow * 145, 104, 115); //So that it would be in the middle
-			}
-			else
-				aChallengeButton->Resize(37 + (aChlDef.mCol * 2) * 148, 125 + aChlDef.mRow * 145, 104, 115);
-		}
+			aChallengeButton->Resize(40 + (aChlDef.mCol * 2) * 110, 93 + aChlDef.mRow * 119, 104, 115); 
+		else
+			aChallengeButton->Resize(40 + (aChlDef.mCol * 2) * 110, 125 + aChlDef.mRow * 145, 104, 115);
 		if (MoreTrophiesNeeded(aChallengeMode))
 		{
 			aChallengeButton->mDoFinger = false;
