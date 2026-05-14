@@ -21,6 +21,7 @@
 
 #include "GameButton.h"
 #include "../../LawnApp.h"
+#include "../../GameConstants.h" //For "BOARD_WIDTH"
 #include "../System/Music.h"
 #include "ChallengeScreen.h"
 #include "../../Resources.h"
@@ -148,7 +149,7 @@ ChallengeScreen::ChallengeScreen(LawnApp* theApp, ChallengePage thePage)
 		aPageButton->SetFont(Sexy::FONT_BRIANNETOD12);
 		aPageButton->mColors[ButtonWidget::COLOR_LABEL] = Color(255, 240, 0);
 		aPageButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(220, 220, 0);
-		aPageButton->Resize(200 + 100 * aPageIdx, 540, 100, 75);
+		aPageButton->Resize(333 + 100 * aPageIdx, 540, 100, 75);
 		if (!ShowPageButtons() || aPageIdx == CHALLENGE_PAGE_SURVIVAL || aPageIdx == CHALLENGE_PAGE_PUZZLE)
 			aPageButton->mVisible = false;
 	}
@@ -160,10 +161,16 @@ ChallengeScreen::ChallengeScreen(LawnApp* theApp, ChallengePage thePage)
 		mChallengeButtons[aChallengeMode] = aChallengeButton;
 		aChallengeButton->mDoFinger = true;
 		aChallengeButton->mFrameNoDraw = true;
-		if (aChlDef.mPage == CHALLENGE_PAGE_CHALLENGE || aChlDef.mPage == CHALLENGE_PAGE_LIMBO || aChlDef.mPage == CHALLENGE_PAGE_PUZZLE)
-			aChallengeButton->Resize(38 + aChlDef.mCol * 155, 93 + aChlDef.mRow * 119, 104, 115);
-		else
-			aChallengeButton->Resize(38 + aChlDef.mCol * 155, 125 + aChlDef.mRow * 145, 104, 115);
+		if (!aChlDef.mPage == CHALLENGE_PAGE_SURVIVAL)
+			aChallengeButton->Resize(37 + (aChlDef.mCol * 2) * 148, 93 + aChlDef.mRow * 119, 104, 115);
+		else {
+			if (aChlDef.mChallengeMode == GAMEMODE_SURVIVAL_ENDLESS_STAGE_3) {
+				aChlDef.mCol = 3;
+				aChallengeButton->Resize(37 + aChlDef.mCol * 148, 125 + aChlDef.mRow * 145, 104, 115); //So that it would be in the middle
+			}
+			else
+				aChallengeButton->Resize(37 + (aChlDef.mCol * 2) * 148, 125 + aChlDef.mRow * 145, 104, 115);
+		}
 		if (MoreTrophiesNeeded(aChallengeMode))
 		{
 			aChallengeButton->mDoFinger = false;
@@ -548,16 +555,16 @@ void ChallengeScreen::Draw(Graphics* g)
 	std::string aTitleString =
 		mPageIndex == CHALLENGE_PAGE_SURVIVAL ? "[PICK_AREA]" : 
 		mPageIndex == CHALLENGE_PAGE_PUZZLE ? "[SCARY_POTTER]" : "[PICK_CHALLENGE]";
-	TodDrawString(g, aTitleString, 400, 58, Sexy::FONT_HOUSEOFTERROR28, Color(220, 220, 220), DS_ALIGN_CENTER);
+	TodDrawString(g, aTitleString, BOARD_WIDTH / 2, 58, Sexy::FONT_HOUSEOFTERROR28, Color(220, 220, 220), DS_ALIGN_CENTER);
 
 	int aTrophiesGot = mApp->GetNumTrophies(mPageIndex);
 	int aTrophiesTotal = mPageIndex == CHALLENGE_PAGE_SURVIVAL ? 10 : mPageIndex == CHALLENGE_PAGE_CHALLENGE ? 20 : mPageIndex == CHALLENGE_PAGE_PUZZLE ? 18 : 0;
 	if (aTrophiesTotal > 0)
 	{
 		std::string aTrophyString = StrFormat("%d/%d", aTrophiesGot, aTrophiesTotal);
-		TodDrawString(g, aTrophyString, 739, 73, Sexy::FONT_DWARVENTODCRAFT12, Color(255, 240, 0), DS_ALIGN_CENTER);
+		TodDrawString(g, aTrophyString, 872, 73, Sexy::FONT_DWARVENTODCRAFT15, Color(255, 240, 0), DS_ALIGN_CENTER);
 	}
-	TodDrawImageScaledF(g, Sexy::IMAGE_TROPHY, 718, 26, 0.5f, 0.5f);
+	TodDrawImageScaledF(g, Sexy::IMAGE_TROPHY, 851, 26, 0.5f, 0.5f);
 
 	for (int aChallengeMode = 0; aChallengeMode < NUM_CHALLENGE_MODES; aChallengeMode++)
 		DrawButton(g, aChallengeMode);
