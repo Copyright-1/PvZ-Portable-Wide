@@ -145,7 +145,7 @@ AwardScreen::AwardScreen(LawnApp* theApp, AwardType theAwardType, bool theShowin
 	mStartButton->SetFont(Sexy::FONT_DWARVENTODCRAFT15);
 	mStartButton->mColors[ButtonWidget::COLOR_LABEL] = Color(213, 159, 43);
 	mStartButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(213, 159, 43);
-	mStartButton->Resize(324, 500, 156, 42);
+	mStartButton->Resize(457, 500, 156, 42);
 	mStartButton->mTextOffsetY = -1;
 
 	// @Patoke: implemented
@@ -158,7 +158,7 @@ AwardScreen::AwardScreen(LawnApp* theApp, AwardType theAwardType, bool theShowin
 	mContinueButton->SetFont(Sexy::FONT_DWARVENTODCRAFT15);
 	mContinueButton->mColors[ButtonWidget::COLOR_LABEL] = Color(213, 159, 43);
 	mContinueButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(213, 159, 43);
-	mContinueButton->Resize(324, 515, 156, 42);
+	mContinueButton->Resize(457, 515, 156, 42);
 	mContinueButton->mParentWidget = this;
 	mContinueButton->mTextOffsetY = -1;
 	mContinueButton->mBtnNoDraw = true;
@@ -173,7 +173,7 @@ AwardScreen::AwardScreen(LawnApp* theApp, AwardType theAwardType, bool theShowin
 	mMenuButton->mColors[ButtonWidget::COLOR_LABEL] = Color(42, 42, 90);
 	mMenuButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(42, 42, 90);
 	mMenuButton->mParentWidget = this;
-	mMenuButton->Resize(677, 16, 111, 26);
+	mMenuButton->Resize(943, 16, 111, 26);
 	mMenuButton->mTextOffsetY = 1;
 	if (!mApp->HasFinishedAdventure() && aLevel <= 3)
 	{
@@ -192,7 +192,7 @@ AwardScreen::AwardScreen(LawnApp* theApp, AwardType theAwardType, bool theShowin
 		mStartButton->SetFont(Sexy::FONT_HOUSEOFTERROR20);
 		mStartButton->mColors[ButtonWidget::COLOR_LABEL] = Color(255, 255, 255);
 		mStartButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(213, 159, 43);
-		mStartButton->Resize(325, 505, 190, 73);
+		mStartButton->Resize(458, 505, 190, 73);
 		mStartButton->mTextOffsetX = 33;
 		mStartButton->mTextOffsetY = -2;
 		mStartButton->mButtonOffsetX = -2;
@@ -278,7 +278,7 @@ void AwardScreen::DrawBottom(Graphics* g, const std::string& theTitle, const std
 	g->DrawImage(Sexy::IMAGE_AWARDSCREEN_BACK, 0, 0);
 	TodDrawString(g, theTitle, BOARD_WIDTH / 2, 58, Sexy::FONT_DWARVENTODCRAFT24, Color(213, 159, 43), DS_ALIGN_CENTER);
 	TodDrawString(g, theAward, BOARD_WIDTH / 2, 326, Sexy::FONT_DWARVENTODCRAFT18YELLOW, Color::White, DS_ALIGN_CENTER);
-	TodDrawStringWrapped(g, theMessage, Rect(285, 360, 230, 90), Sexy::FONT_BRIANNETOD16, Color(40, 50, 90), DS_ALIGN_CENTER_VERTICAL_MIDDLE);
+	TodDrawStringWrapped(g, theMessage, Rect(418, 360, 230, 90), Sexy::FONT_BRIANNETOD16, Color(40, 50, 90), DS_ALIGN_CENTER_VERTICAL_MIDDLE);
 }
 
 void AwardScreen::DrawAwardSeed(Graphics* g)
@@ -293,7 +293,7 @@ void AwardScreen::DrawAwardSeed(Graphics* g)
 	DrawBottom(g, "[NEW_PLANT]", aAward, aMessage);
 
 	g->SetScale(2, 2, 350, 129);
-	DrawSeedPacket(g, 350, 129, aSeedType, SEED_NONE, 0, 255, true, false);
+	DrawSeedPacket(g, 483, 129, aSeedType, SEED_NONE, 0, 255, true, false);
 	g->SetScale(1, 1, 0, 0);
 }
 
@@ -313,14 +313,14 @@ void AwardScreen::Draw(Graphics* g)
 		g->SetColorizeImages(false);
 		g->SetColor(Color(0, 0, 0, 64));
 		g->FillRect(0, 525, BOARD_WIDTH, BOARD_HEIGHT);
-		g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 75, 60);
+		g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 208, 60);
 		g->DrawImage(Sexy::IMAGE_CREDITS_ZOMBIENOTE, 149, 103, 475, 325);
 	}
 	else if (mAwardType == AWARD_HELP_ZOMBIENOTE)
 	{
 		g->DrawImage(Sexy::IMAGE_BACKGROUND1, -700, -300, 2800, 1200);
-		g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 80, 80);
-		g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE_HELP, 131, 132);
+		g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 213, 80);
+		g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE_HELP, 264, 132);
 	}
 	else if (mAwardType != AWARD_ACHIEVEMENTONLY) // @Patoke: add check
 	{
@@ -329,7 +329,7 @@ void AwardScreen::Draw(Graphics* g)
 			if (mApp->EarnedGoldTrophy())
 			{
 				DrawBottom(g, "[BEAT_GAME_MESSAGE1]", "[GOLD_SUNFLOWER_TROPHY]", "[BEAT_GAME_MESSAGE2]");
-				TodDrawImageCelCenterScaledF(g, Sexy::IMAGE_SUNFLOWER_TROPHY, 330, 80, 1, 0.7f, 0.7f);
+				TodDrawImageCelCenterScaledF(g, Sexy::IMAGE_SUNFLOWER_TROPHY, 463, 80, 1, 0.7f, 0.7f);
 			}
 			else
 			{
@@ -361,8 +361,8 @@ void AwardScreen::Draw(Graphics* g)
 		else if (aLevel == 10)
 		{
 			g->DrawImage(Sexy::IMAGE_BACKGROUND1, -700, -300, 2800, 1200);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 80, 80);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE1, 131, 132);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 213, 80);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE1, 264, 132);
 			TodDrawString(g, "[FOUND_NOTE]", BOARD_WIDTH / 2, 70, Sexy::FONT_DWARVENTODCRAFT24, Color(255, 200, 0, 255), DS_ALIGN_CENTER);
 		}
 		else if (aLevel == 15)
@@ -373,8 +373,8 @@ void AwardScreen::Draw(Graphics* g)
 		else if (aLevel == 20)
 		{
 			g->DrawImage(Sexy::IMAGE_BACKGROUND2, -700, -300, 2800, 1200);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 80, 80);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE2, 133, 127);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 213, 80);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE2, 266, 127);
 			TodDrawString(g, "[FOUND_NOTE]", BOARD_WIDTH / 2, 70, Sexy::FONT_DWARVENTODCRAFT24, Color(255, 200, 0, 255), DS_ALIGN_CENTER);
 		}
 		else if (aLevel == 25)
@@ -385,8 +385,8 @@ void AwardScreen::Draw(Graphics* g)
 		else if (aLevel == 30)
 		{
 			g->DrawImage(Sexy::IMAGE_BACKGROUND1, -700, -300, 2800, 1200);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 80, 80);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE3, 120, 117);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 213, 80);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE3, 253, 117);
 			TodDrawString(g, "[FOUND_NOTE]", BOARD_WIDTH / 2, 70, Sexy::FONT_DWARVENTODCRAFT24, Color(255, 200, 0, 255), DS_ALIGN_CENTER);
 		}
 		else if (aLevel == 35)
@@ -397,8 +397,8 @@ void AwardScreen::Draw(Graphics* g)
 		else if (aLevel == 40)
 		{
 			g->DrawImage(Sexy::IMAGE_BACKGROUND2, -700, -300, 2800, 1200);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 80, 80);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE4, 102, 117);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 213, 80);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE4, 235, 117);
 			TodDrawString(g, "[FOUND_NOTE]", BOARD_WIDTH / 2, 70, Sexy::FONT_DWARVENTODCRAFT24, Color(255, 200, 0, 255), DS_ALIGN_CENTER);
 		}
 		else if (aLevel == 45)
@@ -409,14 +409,14 @@ void AwardScreen::Draw(Graphics* g)
 		else if (aLevel == 50)
 		{
 			g->DrawImage(Sexy::IMAGE_BACKGROUND1, -700, -300, 2800, 1200);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 80, 80);
-			g->DrawImage(Sexy::IMAGE_ZOMBIE_FINAL_NOTE, 114, 138);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_NOTE, 213, 80);
+			g->DrawImage(Sexy::IMAGE_ZOMBIE_FINAL_NOTE, 247, 138);
 			TodDrawString(g, "[FOUND_NOTE]", BOARD_WIDTH / 2, 70, Sexy::FONT_DWARVENTODCRAFT24, Color(255, 200, 0, 255), DS_ALIGN_CENTER);
 		}
 		else if (aLevel == 1 && mApp->HasFinishedAdventure())
 		{
 			DrawBottom(g, "[WIN_MESSAGE1]", "[SILVER_SUNFLOWER_TROPHY]", "[WIN_MESSAGE2]");
-			TodDrawImageCelCenterScaledF(g, Sexy::IMAGE_SUNFLOWER_TROPHY, 325, 65, 0, 0.7f, 0.7f);
+			TodDrawImageCelCenterScaledF(g, Sexy::IMAGE_SUNFLOWER_TROPHY, 458, 65, 0, 0.7f, 0.7f);
 		}
 		else
 		{
