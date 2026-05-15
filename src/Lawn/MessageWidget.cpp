@@ -172,7 +172,7 @@ void MessageWidget::LayoutReanimText()
 
 	aCurLine = 0;
 	float aCurPosY = 0.0f;
-	float aCurPosX = -aLineWidth[0] * 0.5f;
+	float aCurPosX = -(aLineWidth[0] * 0.5f) + 133.0f;
 	// 以下遍历字幕中的所有文本，分别在适当的位置创建每一个文字的动画
 	for (int aPos = 0; aPos < aLabelLen; aPos++)
 	{
