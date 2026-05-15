@@ -140,7 +140,7 @@ void CutScene::PlaceAZombie(ZombieType theZombieType, int theGridX, int theGridY
 
 	Zombie* aZombie = mBoard->AddZombieInRow(theZombieType, theGridY, -2);
 	TOD_ASSERT(aZombie);
-	aZombie->mPosX = theGridX * 56 + 830;
+	aZombie->mPosX = theGridX * 56 + 1003;
 	aZombie->mPosY = theGridY * 90 + 70;
 	if (theGridX % 2 == 1)
 	{
